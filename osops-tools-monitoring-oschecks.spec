@@ -11,7 +11,7 @@ Summary:        Scripts used to monitor an Openstack Installation
 
 License:        ASL 2.0
 URL:            https://github.com/openstack/osops-tools-monitoring
-Source0:        https://github.com/openstack/osops-tools-monitoring/archive/%{commit}/osops-tools-monitoring-%{shortcommit}.tar.gz
+Source0:        https://github.com/openstack/osops-tools-monitoring/archive/%{commit}/osops-tools-monitoring-%{shortcommit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 
 BuildRequires:  python-devel
 BuildRequires:  python-pbr

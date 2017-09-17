@@ -17,6 +17,7 @@ BuildRequires:  python-devel
 BuildRequires:  python-pbr
 BuildRequires:  git
 BuildRequires:  python-setuptools
+BuildRequires:  openstack-macros
 Requires: python-psutil >= 1.2.1
 Requires: python-ceilometerclient
 Requires: python-cinderclient
@@ -35,7 +36,7 @@ BuildArch: noarch
 
 %prep
 %autosetup -v -n osops-tools-monitoring-oschecks-%{upstream_version}/monitoring-for-openstack -S git
-rm requirements.txt test-requirements.txt
+%py_req_cleanup
 
 rm -rf monitoring_for_openstack.egg-info
 

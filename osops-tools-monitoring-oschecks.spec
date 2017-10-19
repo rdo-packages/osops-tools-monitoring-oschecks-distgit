@@ -1,12 +1,15 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
-%global commit          23ee1b59533329b24f4b53a5eb49ba1a027de8ab
+%global commit          62160d10683023c8c9d96f616223d8def88b870d
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-
+# DO NOT REMOVE ALPHATAG
+%global alphatag .%{shortcommit}git
 
 Name:           osops-tools-monitoring-oschecks
-Version:        XXX
-Release:        XXX
+Version:        0.1
+# Latest build from Opstool SIG NVR:
+# osops-tools-monitoring-oschecks-0.1-0.8.23ee1b5git.el7
+Release:        0.9%{?alphatag}%{?dist}
 Summary:        Scripts used to monitor an Openstack Installation
 
 License:        ASL 2.0
@@ -53,3 +56,5 @@ find %{buildroot}%{python2_sitelib}/oschecks/*.py -not -name '__init__.py' -exec
 %{python2_sitelib}/monitoring_for_openstack*
 
 %changelog
+* Thu Oct 19 2017 Haïkel Guémar <hguemar@fedoraproject.org> - 0.1-0.9.62160d106git
+- Initial Pike release (62160d10683023c8c9d96f616223d8def88b870d)

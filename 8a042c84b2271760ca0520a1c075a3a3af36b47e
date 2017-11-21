@@ -1,0 +1,9 @@
+Code-Review+2: hguemar <hguemar@fedoraproject.org>
+Workflow+1: hguemar <hguemar@fedoraproject.org>
+Code-Review+2: Martin Mágr <mmagr@redhat.com>
+Verified+2: Jenkins CI <admin@rpmfactory.beta.rdoproject.org>
+Submitted-by: Jenkins CI <admin@rpmfactory.beta.rdoproject.org>
+Submitted-at: Tue, 21 Nov 2017 17:47:25 +0000
+Reviewed-on: https://review.rdoproject.org/r/10196
+Project: openstack/osops-tools-monitoring-oschecks-distgit
+Branch: refs/heads/pike-rdo

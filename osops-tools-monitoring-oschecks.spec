@@ -13,20 +13,20 @@ License:        ASL 2.0
 URL:            https://github.com/openstack/osops-tools-monitoring
 Source0:        https://github.com/openstack/osops-tools-monitoring/archive/%{commit}/osops-tools-monitoring-%{shortcommit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 
-BuildRequires:  python-devel
-BuildRequires:  python-pbr
+BuildRequires:  python2-devel
+BuildRequires:  python2-pbr
 BuildRequires:  git
-BuildRequires:  python-setuptools
+BuildRequires:  python2-setuptools
 BuildRequires:  openstack-macros
-Requires: python-psutil >= 1.2.1
-Requires: python-ceilometerclient
-Requires: python-cinderclient
-Requires: python-glanceclient
-Requires: python-keystoneclient
-Requires: python-neutronclient
-Requires: python-novaclient
-Requires: python-openstackclient >= 3.2.0
-Requires: python-six >= 1.9.0
+Requires: python2-psutil >= 1.2.1
+Requires: python2-ceilometerclient
+Requires: python2-cinderclient
+Requires: python2-glanceclient
+Requires: python2-keystoneclient
+Requires: python2-neutronclient
+Requires: python2-novaclient
+Requires: python2-openstackclient >= 3.12.0
+Requires: python2-six >= 1.10.0
 
 
 BuildArch: noarch

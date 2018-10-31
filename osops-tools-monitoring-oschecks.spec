@@ -1,3 +1,13 @@
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pyver %{python3_pkgversion}
+%else
+%global pyver 2
+%endif
+%global pyver_sitelib %python%{pyver}_sitelib
+%global pyver_install %py%{pyver}_install
+%global pyver_build %py%{pyver}_build
+# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 %global commit          23ee1b59533329b24f4b53a5eb49ba1a027de8ab
@@ -13,20 +23,20 @@ License:        ASL 2.0
 URL:            https://github.com/openstack/osops-tools-monitoring
 Source0:        https://github.com/openstack/osops-tools-monitoring/archive/%{commit}/osops-tools-monitoring-%{shortcommit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
 
-BuildRequires:  python2-devel
-BuildRequires:  python2-pbr
+BuildRequires:  python%{pyver}-devel
+BuildRequires:  python%{pyver}-pbr
 BuildRequires:  git
-BuildRequires:  python2-setuptools
+BuildRequires:  python%{pyver}-setuptools
 BuildRequires:  openstack-macros
-Requires: python2-psutil >= 1.2.1
-Requires: python2-ceilometerclient
-Requires: python2-cinderclient
-Requires: python2-glanceclient
-Requires: python2-keystoneclient
-Requires: python2-neutronclient
-Requires: python2-novaclient
-Requires: python2-openstackclient >= 3.12.0
-Requires: python2-six >= 1.10.0
+Requires: python%{pyver}-psutil >= 1.2.1
+Requires: python%{pyver}-ceilometerclient
+Requires: python%{pyver}-cinderclient
+Requires: python%{pyver}-glanceclient
+Requires: python%{pyver}-keystoneclient
+Requires: python%{pyver}-neutronclient
+Requires: python%{pyver}-novaclient
+Requires: python%{pyver}-openstackclient >= 3.12.0
+Requires: python%{pyver}-six >= 1.10.0
 
 
 BuildArch: noarch
@@ -42,15 +52,15 @@ rm -rf monitoring_for_openstack.egg-info
 
 
 %build
-%{__python2} setup.py build
+%{pyver_build}
 
 %install
-%{__python2} setup.py install -O1 --skip-build --root=%{buildroot}
-find %{buildroot}%{python2_sitelib}/oschecks/*.py -not -name '__init__.py' -exec chmod +x {} \;
+%{pyver_install}
+find %{buildroot}%{pyver_sitelib}/oschecks/*.py -not -name '__init__.py' -exec chmod +x {} \;
 
 %files
 %{_libexecdir}/openstack-monitoring/checks/oschecks-*
-%{python2_sitelib}/oschecks
-%{python2_sitelib}/monitoring_for_openstack*
+%{pyver_sitelib}/oschecks
+%{pyver_sitelib}/monitoring_for_openstack*
 
 %changelog

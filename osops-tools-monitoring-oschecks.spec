@@ -31,6 +31,9 @@ BuildRequires:  python%{pyver}-pbr
 BuildRequires:  git
 BuildRequires:  python%{pyver}-setuptools
 BuildRequires:  openstack-macros
+%if %{pyver} == 3
+BuildRequires:  /usr/bin/pathfix.py
+%endif
 Requires: python%{pyver}-psutil >= 1.2.1
 Requires: python%{pyver}-ceilometerclient
 Requires: python%{pyver}-cinderclient
@@ -40,7 +43,6 @@ Requires: python%{pyver}-neutronclient
 Requires: python%{pyver}-novaclient
 Requires: python%{pyver}-openstackclient >= 3.12.0
 Requires: python%{pyver}-six >= 1.10.0
-
 
 BuildArch: noarch
 
@@ -60,6 +62,10 @@ rm -rf monitoring_for_openstack.egg-info
 %install
 %{pyver_install}
 find %{buildroot}%{pyver_sitelib}/oschecks/*.py -not -name '__init__.py' -exec chmod +x {} \;
+
+%if %{pyver} == 3
+pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{pyver_sitelib}/oschecks/
+%endif
 
 %files
 %{_libexecdir}/openstack-monitoring/checks/oschecks-*

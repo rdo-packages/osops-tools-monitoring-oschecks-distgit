@@ -1,13 +1,3 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 %global commit          23ee1b59533329b24f4b53a5eb49ba1a027de8ab
@@ -22,27 +12,23 @@ Summary:        Scripts used to monitor an Openstack Installation
 License:        ASL 2.0
 URL:            https://github.com/openstack/osops-tools-monitoring
 Source0:        https://github.com/openstack/osops-tools-monitoring/archive/%{commit}/osops-tools-monitoring-%{shortcommit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-%if %{pyver} == 3
 Obsoletes:      osops-tools-monitoring-oschecks < %{version}-%{release}
-%endif
 
-BuildRequires:  python%{pyver}-devel
-BuildRequires:  python%{pyver}-pbr
+BuildRequires:  python3-devel
+BuildRequires:  python3-pbr
 BuildRequires:  git
-BuildRequires:  python%{pyver}-setuptools
+BuildRequires:  python3-setuptools
 BuildRequires:  openstack-macros
-%if %{pyver} == 3
 BuildRequires:  /usr/bin/pathfix.py
-%endif
-Requires: python%{pyver}-psutil >= 1.2.1
-Requires: python%{pyver}-ceilometerclient
-Requires: python%{pyver}-cinderclient
-Requires: python%{pyver}-glanceclient
-Requires: python%{pyver}-keystoneclient
-Requires: python%{pyver}-neutronclient
-Requires: python%{pyver}-novaclient
-Requires: python%{pyver}-openstackclient >= 3.12.0
-Requires: python%{pyver}-six >= 1.10.0
+Requires: python3-psutil >= 1.2.1
+Requires: python3-ceilometerclient
+Requires: python3-cinderclient
+Requires: python3-glanceclient
+Requires: python3-keystoneclient
+Requires: python3-neutronclient
+Requires: python3-novaclient
+Requires: python3-openstackclient >= 3.12.0
+Requires: python3-six >= 1.10.0
 
 BuildArch: noarch
 
@@ -57,19 +43,17 @@ rm -rf monitoring_for_openstack.egg-info
 
 
 %build
-%{pyver_build}
+%{py3_build}
 
 %install
-%{pyver_install}
-find %{buildroot}%{pyver_sitelib}/oschecks/*.py -not -name '__init__.py' -exec chmod +x {} \;
+%{py3_install}
+find %{buildroot}%{python3_sitelib}/oschecks/*.py -not -name '__init__.py' -exec chmod +x {} \;
 
-%if %{pyver} == 3
-pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{pyver_sitelib}/oschecks/
-%endif
+pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{python3_sitelib}/oschecks/
 
 %files
 %{_libexecdir}/openstack-monitoring/checks/oschecks-*
-%{pyver_sitelib}/oschecks
-%{pyver_sitelib}/monitoring_for_openstack*
+%{python3_sitelib}/oschecks
+%{python3_sitelib}/monitoring_for_openstack*
 
 %changelog

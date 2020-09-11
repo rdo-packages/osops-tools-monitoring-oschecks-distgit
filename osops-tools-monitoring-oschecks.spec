@@ -73,3 +73,4 @@ pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{pyver_sitelib}/o
 %{pyver_sitelib}/monitoring_for_openstack*
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/osops-tools-monitoring/commit/?id=1d5cf49317ad3d88cecda31a38a88fd82386a6a1

@@ -54,3 +54,4 @@ find %{buildroot}%{python2_sitelib}/oschecks/*.py -not -name '__init__.py' -exec
 %{python2_sitelib}/monitoring_for_openstack*
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/osops-tools-monitoring/commit/?id=1d5cf49317ad3d88cecda31a38a88fd82386a6a1

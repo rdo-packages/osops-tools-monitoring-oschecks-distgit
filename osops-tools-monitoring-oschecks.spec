@@ -16,7 +16,7 @@ Obsoletes:      osops-tools-monitoring-oschecks < %{version}-%{release}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
-BuildRequires:  git
+BuildRequires:  git-core
 BuildRequires:  python3-setuptools
 BuildRequires:  openstack-macros
 BuildRequires:  /usr/bin/pathfix.py
